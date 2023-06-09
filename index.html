@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="./pages/index.css">
+  <title></title>
+</head>
+<body>
+  <div class="page">
+    <header class="header">
+      <img src="./images/logo.svg" class="header__logo" alt="Логотип Место_Россия" >
+    </header>
+    <main>
+      <section class="profile">
+        <img src="./images/image.jpg" class="profile__image" alt="Аватар">
+        <div class="profile__info">
+          <div class="profile__info-user">
+            <h1 class="profile__name">Жак-Ив Кусто</h1>
+            <p class="profile__text" >Исследователь океана</p>
+          </div>
+          <button class="profile__edit-button"></button>
+        </div>
+        <button class="profile__add-button"></button>
+      </section>
+      <section class="elements">
+        <div class="element">
+          <img class="element__image" src="./images/kirill-pershin-1088404-unsplash.jpg" alt="">
+          <h2 class="element__text">Карачаевск</h2>
+          <div>
+            <input type="checkbox" class="element__like-area" id="checkbox 1">
+            <label for="checkbox 1">
+              <div class="element__like"></div>
+            </label>
+          </div>
+        </div>
+        <div class="element">
+          <img class="element__image" src="./images/kirill-pershin-1404681-unsplash.png" alt="">
+          <h2 class="element__text">Гора Эльбрус</h2>
+          <div>
+            <input type="checkbox" class="element__like-area" id="checkbox 2">
+            <label for="checkbox 2">
+              <div class="element__like"></div>
+            </label>
+          </div>
+        </div>
+        <div class="element">
+          <img class="element__image" src="/images/kirill-pershin-1556355-unsplash.png" alt="">
+          <h2 class="element__text">Домбай</h2>
+          <div>
+            <input type="checkbox" class="element__like-area" id="checkbox 3">
+            <label for="checkbox 3">
+              <div class="element__like"></div>
+            </label>
+          </div>
+        </div>
+        <div class="element">
+          <img class="element__image" src="/images/kirill-pershin-1404681-unsplash.png" alt="">
+          <h2 class="element__text">Гора Эльбрус</h2>
+          <div>
+            <input type="checkbox" class="element__like-area" id="checkbox 4">
+            <label for="checkbox 4">
+              <div class="element__like"></div>
+            </label>
+          </div>
+        </div>
+        <div class="element">
+          <img class="element__image" src="/images/kirill-pershin-1556355-unsplash.png" alt="">
+          <h2 class="element__text">Домбай</h2>
+          <div>
+            <input type="checkbox" class="element__like-area" id="checkbox 5">
+            <label for="checkbox 5">
+              <div class="element__like"></div>
+            </label>
+          </div>
+        </div>
+        <div class="element">
+          <img class="element__image" src="/images/kirill-pershin-1088404-unsplash.jpg" alt="">
+          <h2 class="element__text">Карачаево-Черкессия</h2>
+          <div>
+            <input type="checkbox" class="element__like-area" id="checkbox 6">
+            <label for="checkbox 6">
+              <div class="element__like"></div>
+            </label>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer class="footer">
+      <p class="footer__copyright">© 2020 Mesto Russia</p>
+    </footer>
+    <div class="pop-up__overlay">
+      <form class="pop-up__container" action="">
+        <div class="pop-up__close-icon"></div>
+        <fieldset class="pop-up__fieldset">
+          <legend class="pop-up__legend">Редактировать профиль</legend>
+          <label>
+            <input type="text" value="Жак-Ив Кусто" class="pop-up__input">
+          </label>
+          <label>
+            <input type="text" value="Исследователь океана" class="pop-up__input">
+          </label>
+          <button type="submit" class="pop-up__button">Сохранить</button>
+        </fieldset>
+      </form>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
+

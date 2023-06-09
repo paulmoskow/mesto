@@ -1,0 +1,17 @@
+.element__like {
+  width: 22px;
+  height: 19px;
+  background-size: cover;
+  background-image: url("../../../images/like.png");
+  cursor: pointer;
+  align-self: center;
+  margin-right: 30px;
+}
+
+.element__like:hover {
+  opacity: 0.6;
+}
+
+input[type="checkbox"]:checked ~ label .element__like {
+  background-image: url("../../../images/like__active.png");
+}

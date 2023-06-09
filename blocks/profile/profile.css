@@ -1,0 +1,14 @@
+.profile {
+  max-width: 880px;
+  width: 99.5%;
+  margin: 0 auto 51px;
+  display: flex;
+  align-items: center;
+}
+
+@media screen and (max-width: 660px) {
+  .profile {
+    flex-direction: column;
+    margin-bottom: 36px;
+  }
+}

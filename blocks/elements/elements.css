@@ -1,0 +1,25 @@
+.elements {
+  max-width: 880px;
+  width: 99.5%;
+  display: grid;
+  grid-auto-flow: row;
+  grid-template-rows: repeat(2, minmax(min-content, max-content));
+  grid-template-columns: repeat(3, minmax(min-content, max-content));
+  gap: 20px 17px;
+  margin: 0 auto;
+  justify-content: center;
+}
+
+@media screen and (max-width: 896px) {
+  .elements {
+    grid-template-rows: repeat(3, minmax(min-content, max-content));
+    grid-template-columns: repeat(2, minmax(min-content, max-content));
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .elements {
+    grid-template-rows: repeat(6, minmax(min-content, max-content));
+    grid-template-columns: repeat(1, minmax(min-content, max-content));
+  }
+}
