@@ -1,4 +1,4 @@
-.popup__overlay {
+.popup {
   width: 99.5%;
   height: 100vmin;
   background: #00000080;
@@ -16,7 +16,7 @@
 
 
 @media screen and (max-width: 896px) {
-  .popup__overlay {
+  .popup {
     height: 100vmax;
   }
 }
