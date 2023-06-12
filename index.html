@@ -20,93 +20,61 @@
             <h1 class="profile__name">Жак-Ив Кусто</h1>
             <p class="profile__job" >Исследователь океана</p>
           </div>
-          <button class="profile__edit-button"></button>
+          <button type="button" class="profile__edit-button"></button>
         </div>
-        <button class="profile__add-button"></button>
+        <button type="button" class="profile__add-button"></button>
       </section>
       <section class="elements">
         <div class="element">
-          <img class="element__image" src="./images/kirill-pershin-1088404-unsplash.jpg" alt="">
+          <img class="element__image" src="./images/kirill-pershin-1088404-unsplash.jpg" alt="Старинная церковь на фоне гор">
           <h2 class="element__text">Карачаевск</h2>
-          <div>
-            <input type="checkbox" class="element__like-area" id="checkbox1">
-            <label for="checkbox1">
-              <div class="element__like"></div>
-            </label>
-          </div>
+          <button type="button" class="element__like"></button>
         </div>
         <div class="element">
-          <img class="element__image" src="./images/kirill-pershin-1404681-unsplash.png" alt="">
+          <img class="element__image" src="./images/kirill-pershin-1404681-unsplash.png" alt="Пики Эльбруса над степями Ставропольщины">
           <h2 class="element__text">Гора Эльбрус</h2>
-          <div>
-            <input type="checkbox" class="element__like-area" id="checkbox2">
-            <label for="checkbox2">
-              <div class="element__like"></div>
-            </label>
-          </div>
+          <button type="button" class="element__like"></button>
         </div>
         <div class="element">
-          <img class="element__image" src="/images/kirill-pershin-1556355-unsplash.png" alt="">
+          <img class="element__image" src="./images/kirill-pershin-1556355-unsplash.png" alt="Горный пик с ледником">
           <h2 class="element__text">Домбай</h2>
-          <div>
-            <input type="checkbox" class="element__like-area" id="checkbox3">
-            <label for="checkbox3">
-              <div class="element__like"></div>
-            </label>
-          </div>
+          <button type="button" class="element__like"></button>
         </div>
         <div class="element">
-          <img class="element__image" src="/images/kirill-pershin-1404681-unsplash.png" alt="">
+          <img class="element__image" src="./images/kirill-pershin-1404681-unsplash.png" alt="Пики Эльбруса над степями Ставропольщины">
           <h2 class="element__text">Гора Эльбрус</h2>
-          <div>
-            <input type="checkbox" class="element__like-area" id="checkbox4">
-            <label for="checkbox4">
-              <div class="element__like"></div>
-            </label>
-          </div>
+          <button type="button" class="element__like"></button>
         </div>
         <div class="element">
-          <img class="element__image" src="/images/kirill-pershin-1556355-unsplash.png" alt="">
+          <img class="element__image" src="./images/kirill-pershin-1556355-unsplash.png" alt="Горный пик с ледником">
           <h2 class="element__text">Домбай</h2>
-          <div>
-            <input type="checkbox" class="element__like-area" id="checkbox5">
-            <label for="checkbox5">
-              <div class="element__like"></div>
-            </label>
-          </div>
+          <button type="button" class="element__like"></button>
         </div>
         <div class="element">
-          <img class="element__image" src="/images/kirill-pershin-1088404-unsplash.jpg" alt="">
+          <img class="element__image" src="./images/kirill-pershin-1088404-unsplash.jpg" alt="Старинная церковь на фоне гор">
           <h2 class="element__text">Карачаево-Черкессия</h2>
-          <div>
-            <input type="checkbox" class="element__like-area" id="checkbox6">
-            <label for="checkbox6">
-              <div class="element__like"></div>
-            </label>
-          </div>
+          <button type="button" class="element__like"></button>
         </div>
       </section>
     </main>
     <footer class="footer">
       <p class="footer__copyright">© 2020 Mesto Russia</p>
     </footer>
-    <div class="popup popup_opened">
-      <form class="popup__container">
-        <div class="popup__close-button"></div>
-        <fieldset class="popup__fieldset">
-          <legend class="popup__legend">Редактировать профиль</legend>
-          <label>
-            <input type="text" value="Жак-Ив Кусто" class="popup__input" id="nameInput">
-          </label>
-          <label>
-            <input type="text" value="Исследователь океана" class="popup__input" id="jobInput">
-          </label>
-          <button type="submit" class="popup__submit-button">Сохранить</button>
-        </fieldset>
+    <div class="popup">
+      <div class="popup__container">
+        <button type="button" class="popup__close-button"></button>
+        <form name="popup__form" class="popup__form">
+          <fieldset class="popup__fieldset">
+            <legend class="popup__legend">Редактировать профиль</legend>
+            <input type="text" value="Жак-Ив Кусто" class="popup__input" name="nameInput" id="nameInput">
+            <input type="text" value="Исследователь океана" class="popup__input" name="jobInput" id="jobInput">
+            <button type="submit" class="popup__submit-button">Сохранить</button>
+          </fieldset>
       </form>
+      </div>
     </div>
   </div>
-  <script src="script.js"></script>
+  <script src="./scripts/script.js"></script>
 </body>
 </html>
 

@@ -4,7 +4,7 @@
   background-color: inherit;
   background-repeat: no-repeat;
   background-position: center;
-  background-image: url("../../../images/Edit\ Button.png");
+  background-image: url("../../../images/Edit\ Button.svg");
   cursor: pointer;
   margin: 15px 0 auto 18px;
   border: 1px solid #fff;
@@ -19,6 +19,6 @@
     width: 18px;
     height: 18px;
     margin: 32px 19px auto 10px;
-    background-image: url("../../../images/Edit\ Button__mobile.png");
+    background-image: url("../../../images/Edit\ Button__mobile.svg");
   }
 }

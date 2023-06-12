@@ -1,5 +1,15 @@
 .profile__image {
   max-width: 120px;
+  min-height: 120px;
   border-radius: 90%;
   margin-right: 30px;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+@media screen and (max-width: 660px) {
+  .profile__image {
+    margin: 0 auto;
+  }
 }
