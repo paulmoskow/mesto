@@ -15,7 +15,6 @@ const closeCardButton = popUpCard.querySelector('.popup__close-button');
 const placeInput = formCardElement.querySelector('#placeInput');
 const linkInput = formCardElement.querySelector('#linkInput');
 
-
 const initialCards = [
   {
     name: 'Архыз',
@@ -47,6 +46,7 @@ const userElements = document.querySelector('.elements');
 const userTemplate = document.querySelector('#element').content;
 
 const cardsElements = []
+
 for (let i = 0; i < initialCards.length; i++) {
   const userElement = userTemplate.querySelector('.element').cloneNode(true);
   userElement.querySelector('.element__image').src = initialCards[i].link;
@@ -54,9 +54,8 @@ for (let i = 0; i < initialCards.length; i++) {
   userElement.querySelector('.element__text').textContent = initialCards[i].name;
   cardsElements[i] = userElement;
 }
-
-for (let i = 0; i < cardsElements.length; i++) {
-  userElements.prepend(cardsElements[i]);
+ for (let i = 0; i < cardsElements.length; i++) {
+  userElements.append(cardsElements[i]);
 }
 
 function openPopUpProfile() {
@@ -84,9 +83,22 @@ function closePopUpCard() {
   popUpCard.classList.remove('popup_opened');
 }
 
+function handleFormCardSubmit (evt) {
+  evt.preventDefault();
+  const userElement = userTemplate.querySelector('.element').cloneNode(true);
+  const cardsElement = userElement;
+  initialCards.unshift({name: `${placeInput.value}`, link: `${linkInput.value}`});
+  userElement.querySelector('.element__image').src = initialCards[0].link;
+  userElement.querySelector('.element__image').alt = initialCards[0].name;
+  userElement.querySelector('.element__text').textContent = initialCards[0].name;
+  userElements.prepend(cardsElement);
+  closePopUpCard();
+}
+
 editButton.addEventListener('click', openPopUpProfile);
 closeProfileButton.addEventListener('click', closePopUpProfile);
 formProfileElement.addEventListener('submit', handleFormProfileSubmit);
 
 addButton.addEventListener('click', openPopUpCard);
 closeCardButton.addEventListener('click', closePopUpCard);
+formCardElement.addEventListener('submit', handleFormCardSubmit);
