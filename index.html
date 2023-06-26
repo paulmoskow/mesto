@@ -24,61 +24,15 @@
         </div>
         <button type="button" class="profile__add-button"></button>
       </section>
-      <section class="elements">
-        <!--<div class="element">
-          <button type="button" class="element__trash"></button>
-          <img class="element__image" src="./images/kirill-pershin-1088404-unsplash.jpg" alt="Старинная церковь на фоне гор">
-          <h2 class="element__text">Карачаевск</h2>
-          <button type="button" class="element__like"></button>
-        </div>
-        <div class="element">
-          <button type="button" class="element__trash"></button>
-          <img class="element__image" src="./images/kirill-pershin-1404681-unsplash.png" alt="Пики Эльбруса над степями Ставропольщины">
-          <h2 class="element__text">Гора Эльбрус</h2>
-          <button type="button" class="element__like"></button>
-        </div>
-        <div class="element">
-          <button type="button" class="element__trash"></button>
-          <img class="element__image" src="./images/kirill-pershin-1556355-unsplash.png" alt="Горный пик с ледником">
-          <h2 class="element__text">Домбай</h2>
-          <button type="button" class="element__like"></button>
-        </div>
-        <div class="element">
-          <button type="button" class="element__trash"></button>
-          <img class="element__image" src="./images/kirill-pershin-1404681-unsplash.png" alt="Пики Эльбруса над степями Ставропольщины">
-          <h2 class="element__text">Гора Эльбрус</h2>
-          <button type="button" class="element__like"></button>
-        </div>
-        <div class="element">
-          <button type="button" class="element__trash"></button>
-          <img class="element__image" src="./images/kirill-pershin-1556355-unsplash.png" alt="Горный пик с ледником">
-          <h2 class="element__text">Домбай</h2>
-          <button type="button" class="element__like"></button>
-        </div>
-        <div class="element">
-          <button type="button" class="element__trash"></button>
-          <img class="element__image" src="./images/kirill-pershin-1088404-unsplash.jpg" alt="Старинная церковь на фоне гор">
-          <h2 class="element__text">Карачаево-Черкессия</h2>
-          <button type="button" class="element__like"></button>
-        </div>-->
-      </section>
+      <section class="elements"></section>
     </main>
     <footer class="footer">
       <p class="footer__copyright">© 2020 Mesto Russia</p>
     </footer>
-
-    <template id="element">
-      <div class="element">
-        <button type="button" class="element__trash"></button>
-        <img class="element__image" alt="Фотография пользователя">
-        <h2 class="element__text"></h2>
-        <button type="button" class="element__like"></button>
-      </div>
-    </template>
-    <div class="popup">
+    <div class="popup" id="popup-profile">
       <div class="popup__container">
         <button type="button" class="popup__close-button"></button>
-        <form name="popup__form" class="popup__form">
+        <form name="popup__form" class="popup__form" id="popup-profile__form">
           <fieldset class="popup__fieldset">
             <legend class="popup__legend">Редактировать профиль</legend>
             <input type="text" value="Жак-Ив Кусто" class="popup__input" name="nameInput" id="nameInput">
@@ -88,9 +42,9 @@
       </form>
       </div>
     </div>
-    <!--<div class="popup">
+    <div class="popup" id="popup-card">
       <div class="popup__container">
-        <button type="button" class="popup__close-button"></button>
+        <button type="button" class="popup__close-button" id="popup-card__close-button"></button>
         <form name="popup__form" class="popup__form">
           <fieldset class="popup__fieldset">
             <legend class="popup__legend">Новое место</legend>
@@ -100,8 +54,18 @@
           </fieldset>
       </form>
       </div>
-    </div>-->
+    </div>
   </div>
+
+  <template id="element">
+    <div class="element">
+      <button type="button" class="element__trash"></button>
+      <img class="element__image" alt="Фотография">
+      <h2 class="element__text"></h2>
+      <button type="button" class="element__like"></button>
+    </div>
+  </template>
+
   <script src="./scripts/script.js"></script>
 </body>
 </html>
