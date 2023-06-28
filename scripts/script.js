@@ -15,9 +15,8 @@ const closeCardButton = popUpCard.querySelector('.popup__close-button');
 const placeInput = formCardElement.querySelector('#placeInput');
 const linkInput = formCardElement.querySelector('#linkInput');
 
-//const popUpPhoto = document.querySelector('#popup-photo');
-//const photoButton = document.querySelector('.element__image')
-//const closePhotoButton = popUpPhoto.querySelector('.popup__close-button');
+const popUpPhoto = document.querySelector('#popup-photo');
+const closePhotoButton = popUpPhoto.querySelector('.popup__close-button');
 
 const initialCards = [
   {
@@ -88,15 +87,6 @@ function closePopUpCard() {
   popUpCard.classList.remove('popup_opened');
 }
 
-//создать функции открытия и закрытия попапа с картинкой//
-//function openPopUpPhoto() {
- // popUpPhoto.classList.add('popup_opened');
-//}
-
-//function closePopUpPhoto() {
-  //popUpPhoto.classList.remove('popup_opened');
-//}
-
 //создать функцию добавления карточек//
 function handleFormCardSubmit (evt) {
   evt.preventDefault();
@@ -106,6 +96,8 @@ function handleFormCardSubmit (evt) {
   const likeButton = userElement.querySelector('#like');
 //записать в переменную кнопку delete, чтобы потом повесить на нее слушатель//
   const deleteButton = userElement.querySelector('#delete');
+//записать в переменную фото, чтобы потом повесить на него слушатель//
+  const photoButton = document.querySelector('.element__image');
 //добавить пользовательский инпут//
   initialCards.unshift({name: `${placeInput.value}`, link: `${linkInput.value}`});
   userElement.querySelector('.element__image').src = initialCards[0].link;
@@ -119,12 +111,10 @@ function handleFormCardSubmit (evt) {
     const card = deleteButton.closest('.element');
     card.remove();
   });
+  photoButton.addEventListener('click', openPopUpPhoto);
   userElements.prepend(cardsElement);
   closePopUpCard();
 }
-
-//создать функцию добавления фотографии в попап//
-
 
 editButton.addEventListener('click', openPopUpProfile);
 closeProfileButton.addEventListener('click', closePopUpProfile);
@@ -135,10 +125,11 @@ closeCardButton.addEventListener('click', closePopUpCard);
 formCardElement.addEventListener('submit', handleFormCardSubmit);
 
 //добавить слушателя на картинки//
-//photoButton.addEventListener('click', openPopUpPhoto);
-//closePhotoButton.addEventListener('click', closePopUpPhoto);
+const photoButton = document.querySelector('.element__image');
+photoButton.addEventListener('click', openPopUpPhoto);
+closePhotoButton.addEventListener('click', closePopUpPhoto);
 
-//добавить функцию для изменения цвета кнопки лайка при нажатии//
+//добавить target для изменения цвета кнопки лайка при нажатии//
 const likeButtons = userElements.querySelectorAll('#like');
 likeButtons.forEach((el) => {
   el.addEventListener('click', (event) => {
@@ -147,7 +138,7 @@ likeButtons.forEach((el) => {
   });
 });
 
-//создать функцию удаления карточек//
+//создать слушателя для удаления карточек//
 const deleteButtons = document.querySelectorAll('#delete');
 deleteButtons.forEach((el) => {
   el.addEventListener('click', () => {
@@ -155,3 +146,24 @@ deleteButtons.forEach((el) => {
     card.remove();
   });
 });
+
+//создать функции открытия и закрытия попапа с картинкой//
+function openPopUpPhoto() {
+  const photoButtons = document.querySelectorAll('.element__image');
+  photoButtons.forEach((el) => {
+    el.addEventListener('click', () => {
+      const link = el.getAttribute('src');
+      const name = el.getAttribute('alt');
+      const popUpImage = document.querySelector('.popup__image');
+      const popUpCaption = document.querySelector('.popup__caption');
+      popUpImage.setAttribute('src', link);
+      popUpImage.setAttribute('alt', name);
+      popUpCaption.textContent = name;
+      popUpPhoto.classList.add('popup_opened');
+    });
+  });
+}
+
+ function closePopUpPhoto() {
+  popUpPhoto.classList.remove('popup_opened');
+}
