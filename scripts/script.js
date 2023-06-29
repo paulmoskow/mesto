@@ -2,7 +2,7 @@ const editButton = document.querySelector('.profile__edit-button');
 const addButton = document.querySelector('.profile__add-button');
 
 const popUpProfile = document.querySelector('#popup-profile');
-const formProfileElement = popUpProfile.querySelector('.popup__form');
+const formProfileElement = popUpProfile.querySelector('#popup-profile__form');
 const closeProfileButton = popUpProfile.querySelector('.popup__close-button');
 const nameInput = formProfileElement.querySelector('#nameInput');
 const jobInput = formProfileElement.querySelector('#jobInput');
@@ -10,7 +10,7 @@ const profileName = document.querySelector('.profile__name');
 const profileJob = document.querySelector('.profile__job');
 
 const popUpCard = document.querySelector('#popup-card');
-const formCardElement = popUpCard.querySelector('.popup__form');
+const formCardElement = popUpCard.querySelector('#popup-card__form');
 const closeCardButton = popUpCard.querySelector('.popup__close-button');
 const placeInput = formCardElement.querySelector('#placeInput');
 const linkInput = formCardElement.querySelector('#linkInput');
@@ -64,8 +64,8 @@ for (let i = 0; i < initialCards.length; i++) {
 
 function openPopUpProfile() {
   popUpProfile.classList.add('popup_opened');
-  placeInput.value = profileName.textContent;
-  linkInput.value = profileJob.textContent;
+  nameInput.value = profileName.textContent;
+  jobInput.value = profileJob.textContent;
 }
 
 function closePopUpProfile() {

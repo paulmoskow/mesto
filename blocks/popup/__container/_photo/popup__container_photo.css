@@ -1,0 +1,15 @@
+.popup__container_photo {
+  display: flex;
+  flex-direction: column;
+  max-width: 816px;
+  width: 75vw;
+  height: calc(75vh + 47px);
+  border-radius: 0;
+  background-color: #ffffff00;
+}
+
+@media screen and (max-width: 660px) {
+  .popup__container_photo {
+    height: calc(75vh + 43px);
+  }
+}

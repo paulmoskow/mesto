@@ -2,7 +2,10 @@
   width: 99.5%;
   height: 100%;
   background: #00000080;
-  display: none;
+  display: flex;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s, opacity 300ms linear 300ms;
   justify-items: center;
   align-items: center;
   justify-content: center;

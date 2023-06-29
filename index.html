@@ -45,11 +45,11 @@
     <div class="popup" id="popup-card">
       <div class="popup__container">
         <button type="button" class="popup__close-button" id="popup-card__close-button"></button>
-        <form name="popup__form" class="popup__form">
+        <form name="popup__form" class="popup__form" id="popup-card__form">
           <fieldset class="popup__fieldset">
             <legend class="popup__legend">Новое место</legend>
-            <input type="text" placeholder="Название" class="popup__input" name="placeInput" id="placeInput">
-            <input type="text" placeholder="Ссылка на картинку" class="popup__input" name="linkInput" id="linkInput">
+            <input type="text" value="Название" class="popup__input" name="placeInput" id="placeInput">
+            <input type="text" value="Ссылка на картинку" class="popup__input" name="linkInput" id="linkInput">
             <button type="submit" class="popup__submit-button">Создать</button>
           </fieldset>
       </form>
@@ -57,9 +57,9 @@
     </div>
   </div>
 
-  <div class="popup" id="popup-photo">
-    <div class="popup__container">
-      <button type="button" class="popup__close-button"></button>
+  <div class="popup popup__photo" id="popup-photo">
+    <div class="popup__container popup__container_photo">
+      <button type="button" class="popup__close-button popup__close-button_photo"></button>
       <img class="popup__image" src="#" alt="Фотография">
       <p class="popup__caption">Подпись к фотографии</p>
     </div>
