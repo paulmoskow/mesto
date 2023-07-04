@@ -94,30 +94,28 @@ function handleFormCardSubmit (evt) {
   userCard.name = `${placeInput.value}`;
   userCard.link = `${linkInput.value}`;
   addCard(userCard);
-  closePopUpCard();
+  closePopUp(popUpCard);
   placeInput.value = null;
   linkInput.value = null;
 }
 
-//TODO создать универсальную функцию открытия попапа WHICH WORKS
-//TODO создать универсальную функцию закрытия попапа WHICH WORKS
-/*function openPopUp(el) {
+//TODO создать универсальные функции открытия и закрытия попапа
+function openPopUp(el) {
   el.classList.add('popup_opened');
 }
 
 function closePopUp(el) {
   el.classList.remove('popup_opened');
 }
-*/
 
 function openPopUpProfile() {
-  popUpProfile.classList.add('popup_opened');
+  openPopUp(popUpProfile);
   nameInput.value = profileName.textContent;
   jobInput.value = profileJob.textContent;
 }
 
 function closePopUpProfile() {
-  popUpProfile.classList.remove('popup_opened');
+  closePopUp(popUpProfile);
 }
 
 function handleFormProfileSubmit (evt) {
@@ -128,11 +126,11 @@ function handleFormProfileSubmit (evt) {
 }
 
 function openPopUpCard() {
-  popUpCard.classList.add('popup_opened');
+  openPopUp(popUpCard);
 }
 
 function closePopUpCard() {
-  popUpCard.classList.remove('popup_opened');
+  closePopUp(popUpCard);
 }
 
 editButton.addEventListener('click', openPopUpProfile);
@@ -148,7 +146,7 @@ photoButton.addEventListener('click', openPopUpPhoto);
 closePhotoButton.addEventListener('click', closePopUpPhoto);
 
 function closePopUpPhoto() {
-  popUpPhoto.classList.remove('popup_opened');
+  closePopUp(popUpPhoto);
 }
 
 //создать функции открытия и закрытия попапа с картинкой//
@@ -161,9 +159,8 @@ function openPopUpPhoto() {
       popUpImage.setAttribute('src', link);
       popUpImage.setAttribute('alt', name);
       popUpCaption.textContent = name;
-      popUpPhoto.classList.add('popup_opened');
+      openPopUp(popUpPhoto);
     });
   });
 }
-
 
