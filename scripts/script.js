@@ -17,6 +17,8 @@ const linkInput = formCardElement.querySelector('#linkInput');
 
 const popUpPhoto = document.querySelector('#popup-photo');
 const closePhotoButton = popUpPhoto.querySelector('.popup__close-button');
+const popUpImage = document.querySelector('.popup__image');
+const popUpCaption = document.querySelector('.popup__caption');
 
 const initialCards = [
   {
@@ -47,20 +49,66 @@ const initialCards = [
 
 const userElements = document.querySelector('.elements');
 const userTemplate = document.querySelector('#element').content;
-const cardsElements = []
 
-//добавить цикл для автоматического подставления карточек на страницу//
-for (let i = 0; i < initialCards.length; i++) {
+//make a function for creating cards on the page//
+//TODO - SHOULD BE TWO FUNCTIONS: CREATE CARD AND ADD CARD
+//WHEN TO CREATE CARD ADD POSSIBILITY OF TWO VARIATIONS: TAKE INPUTS FROM ARRAY INITIALCARDS AND FROM USERS INPUT
+function createCard(element) {
   const userElement = userTemplate.querySelector('.element').cloneNode(true);
-  userElement.querySelector('.element__image').src = initialCards[i].link;
-  userElement.querySelector('.element__image').alt = initialCards[i].name;
-  userElement.querySelector('.element__text').textContent = initialCards[i].name;
-  cardsElements[i] = userElement;
+  const photoButton = userElement.querySelector('.element__image');
+  const deleteButton = userElement.querySelector('#delete');
+  const likeButton = userElement.querySelector('#like');
+  photoButton.src = element.link;
+  photoButton.alt = element.name;
+  userElement.querySelector('.element__text').textContent = element.name;
+  photoButton.addEventListener('click', openPopUpPhoto);
+  deleteButton.addEventListener('click', () => {
+    const card = deleteButton.closest('.element');
+    card.remove();
+  });
+  likeButton.addEventListener('click', () => {
+    likeButton.classList.toggle('element__like_active');
+  });
+  return userElement;
 }
 
- for (let i = 0; i < cardsElements.length; i++) {
-  userElements.append(cardsElements[i]);
+function addInitialCard(element) {
+  userElements.append(createCard(element));
 }
+
+function addInitialCards(elements) {
+  elements.forEach((el) => {
+    addInitialCard(el);
+  });
+}
+
+addInitialCards(initialCards);
+
+function addCard(element) {
+  userElements.prepend(createCard(element));
+}
+
+function handleFormCardSubmit (evt) {
+  evt.preventDefault();
+  const userCard = {};
+  userCard.name = `${placeInput.value}`;
+  userCard.link = `${linkInput.value}`;
+  addCard(userCard);
+  closePopUpCard();
+  placeInput.value = null;
+  linkInput.value = null;
+}
+
+//TODO создать универсальную функцию открытия попапа WHICH WORKS
+//TODO создать универсальную функцию закрытия попапа WHICH WORKS
+/*function openPopUp(el) {
+  el.classList.add('popup_opened');
+}
+
+function closePopUp(el) {
+  el.classList.remove('popup_opened');
+}
+*/
 
 function openPopUpProfile() {
   popUpProfile.classList.add('popup_opened');
@@ -87,35 +135,6 @@ function closePopUpCard() {
   popUpCard.classList.remove('popup_opened');
 }
 
-//создать функцию добавления карточек//
-function handleFormCardSubmit (evt) {
-  evt.preventDefault();
-  const userElement = userTemplate.querySelector('.element').cloneNode(true);
-  const cardsElement = userElement;
-//записать в переменную кнопку лайк, чтобы потом повесить на нее слушатель//
-  const likeButton = userElement.querySelector('#like');
-//записать в переменную кнопку delete, чтобы потом повесить на нее слушатель//
-  const deleteButton = userElement.querySelector('#delete');
-//записать в переменную фото, чтобы потом повесить на него слушатель//
-  const photoButton = document.querySelector('.element__image');
-//добавить пользовательский инпут//
-  initialCards.unshift({name: `${placeInput.value}`, link: `${linkInput.value}`});
-  userElement.querySelector('.element__image').src = initialCards[0].link;
-  userElement.querySelector('.element__image').alt = initialCards[0].name;
-  userElement.querySelector('.element__text').textContent = initialCards[0].name;
-  likeButton.addEventListener('click', (event) => {
-    const eventTarget = event.target;
-    eventTarget.classList.toggle('element__like_active');
-  });
-  deleteButton.addEventListener('click', () => {
-    const card = deleteButton.closest('.element');
-    card.remove();
-  });
-  photoButton.addEventListener('click', openPopUpPhoto);
-  userElements.prepend(cardsElement);
-  closePopUpCard();
-}
-
 editButton.addEventListener('click', openPopUpProfile);
 closeProfileButton.addEventListener('click', closePopUpProfile);
 formProfileElement.addEventListener('submit', handleFormProfileSubmit);
@@ -124,28 +143,13 @@ addButton.addEventListener('click', openPopUpCard);
 closeCardButton.addEventListener('click', closePopUpCard);
 formCardElement.addEventListener('submit', handleFormCardSubmit);
 
-//добавить слушателя на картинки//
 const photoButton = document.querySelector('.element__image');
 photoButton.addEventListener('click', openPopUpPhoto);
 closePhotoButton.addEventListener('click', closePopUpPhoto);
 
-//добавить target для изменения цвета кнопки лайка при нажатии//
-const likeButtons = userElements.querySelectorAll('#like');
-likeButtons.forEach((el) => {
-  el.addEventListener('click', (event) => {
-    const eventTarget = event.target;
-    eventTarget.classList.toggle('element__like_active');
-  });
-});
-
-//создать слушателя для удаления карточек//
-const deleteButtons = document.querySelectorAll('#delete');
-deleteButtons.forEach((el) => {
-  el.addEventListener('click', () => {
-    const card = el.closest('.element');
-    card.remove();
-  });
-});
+function closePopUpPhoto() {
+  popUpPhoto.classList.remove('popup_opened');
+}
 
 //создать функции открытия и закрытия попапа с картинкой//
 function openPopUpPhoto() {
@@ -154,8 +158,6 @@ function openPopUpPhoto() {
     el.addEventListener('click', () => {
       const link = el.getAttribute('src');
       const name = el.getAttribute('alt');
-      const popUpImage = document.querySelector('.popup__image');
-      const popUpCaption = document.querySelector('.popup__caption');
       popUpImage.setAttribute('src', link);
       popUpImage.setAttribute('alt', name);
       popUpCaption.textContent = name;
@@ -164,6 +166,4 @@ function openPopUpPhoto() {
   });
 }
 
- function closePopUpPhoto() {
-  popUpPhoto.classList.remove('popup_opened');
-}
+
