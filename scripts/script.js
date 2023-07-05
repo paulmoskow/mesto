@@ -1,9 +1,9 @@
 const editButton = document.querySelector('.profile__edit-button');
 const addButton = document.querySelector('.profile__add-button');
+const closeButton = document.querySelectorAll('.popup__close-button');
 
 const popUpProfile = document.querySelector('#popup-profile');
 const formProfileElement = popUpProfile.querySelector('#popup-profile__form');
-const closeProfileButton = popUpProfile.querySelector('.popup__close-button');
 const nameInput = formProfileElement.querySelector('#nameInput');
 const jobInput = formProfileElement.querySelector('#jobInput');
 const profileName = document.querySelector('.profile__name');
@@ -11,12 +11,10 @@ const profileJob = document.querySelector('.profile__job');
 
 const popUpCard = document.querySelector('#popup-card');
 const formCardElement = popUpCard.querySelector('#popup-card__form');
-const closeCardButton = popUpCard.querySelector('.popup__close-button');
 const placeInput = formCardElement.querySelector('#placeInput');
 const linkInput = formCardElement.querySelector('#linkInput');
 
 const popUpPhoto = document.querySelector('#popup-photo');
-const closePhotoButton = popUpPhoto.querySelector('.popup__close-button');
 const popUpImage = document.querySelector('.popup__image');
 const popUpCaption = document.querySelector('.popup__caption');
 
@@ -50,6 +48,7 @@ const initialCards = [
 const userElements = document.querySelector('.elements');
 const userTemplate = document.querySelector('#element').content;
 
+
 //make a function for creating cards on the page//
 //TODO - SHOULD BE TWO FUNCTIONS: CREATE CARD AND ADD CARD
 //WHEN TO CREATE CARD ADD POSSIBILITY OF TWO VARIATIONS: TAKE INPUTS FROM ARRAY INITIALCARDS AND FROM USERS INPUT
@@ -61,7 +60,8 @@ function createCard(element) {
   photoButton.src = element.link;
   photoButton.alt = element.name;
   userElement.querySelector('.element__text').textContent = element.name;
-  photoButton.addEventListener('click', openPopUpPhoto);
+//TODO send elements argument to a function via callback
+  photoButton.addEventListener('click', () => openPopUpPhoto(element));
   deleteButton.addEventListener('click', () => {
     const card = deleteButton.closest('.element');
     card.remove();
@@ -99,7 +99,6 @@ function handleFormCardSubmit (evt) {
   linkInput.value = null;
 }
 
-//TODO создать универсальные функции открытия и закрытия попапа
 function openPopUp(el) {
   el.classList.add('popup_opened');
 }
@@ -133,34 +132,22 @@ function closePopUpCard() {
   closePopUp(popUpCard);
 }
 
+function openPopUpPhoto(element) {
+  popUpImage.setAttribute('src', element.link);
+  popUpImage.setAttribute('alt', element.name);
+  popUpCaption.textContent = element.name;
+  openPopUp(popUpPhoto);
+}
+
 editButton.addEventListener('click', openPopUpProfile);
-closeProfileButton.addEventListener('click', closePopUpProfile);
 formProfileElement.addEventListener('submit', handleFormProfileSubmit);
 
 addButton.addEventListener('click', openPopUpCard);
-closeCardButton.addEventListener('click', closePopUpCard);
 formCardElement.addEventListener('submit', handleFormCardSubmit);
 
-const photoButton = document.querySelector('.element__image');
-photoButton.addEventListener('click', openPopUpPhoto);
-closePhotoButton.addEventListener('click', closePopUpPhoto);
-
-function closePopUpPhoto() {
-  closePopUp(popUpPhoto);
-}
-
-//создать функции открытия и закрытия попапа с картинкой//
-function openPopUpPhoto() {
-  const photoButtons = document.querySelectorAll('.element__image');
-  photoButtons.forEach((el) => {
-    el.addEventListener('click', () => {
-      const link = el.getAttribute('src');
-      const name = el.getAttribute('alt');
-      popUpImage.setAttribute('src', link);
-      popUpImage.setAttribute('alt', name);
-      popUpCaption.textContent = name;
-      openPopUp(popUpPhoto);
-    });
-  });
-}
+//TODO function for closing all popups with closeButton
+closeButton.forEach(button => {
+  const buttonsPopUp = button.closest('.popup');
+  button.addEventListener('click', () => closePopUp(buttonsPopUp));
+});
 
