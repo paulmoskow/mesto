@@ -1,10 +1,10 @@
 const formSelector = document.querySelector('.popup__form');
 const inputSelector = formSelector.querySelector('.popup__input');
-const formError = formSelector.querySelector(`.${inputSelector.id}-error_visible`);
+const formError = formSelector.querySelector(`.${inputSelector.id}-error`);
 
 // TODO add class with error
 function showInputError(formSelector, inputSelector, errorMessage) {
-  const inputErrorClass = formSelector.querySelector(`.${inputSelector.id}-error_visible`);
+  const inputErrorClass = formSelector.querySelector(`.${inputSelector.id}-error`);
   inputSelector.classList.add('popup__input_type_error');
   inputErrorClass.textContent = errorMessage;
   inputErrorClass.classList.add('popup__error_visible');
@@ -12,9 +12,9 @@ function showInputError(formSelector, inputSelector, errorMessage) {
 
 // TODO delete class with error
 function hideInputError (formSelector, inputSelector) {
-  const inputErrorClass = formSelector.querySelector(`.${inputSelector.id}-error_visible`);
+  const inputErrorClass = formSelector.querySelector(`.${inputSelector.id}-error`);
   inputSelector.classList.remove('popup__input_type_error');
-  inputErrorClass.remove('popup__error_visible');
+  inputErrorClass.remove('popup__error');
   inputErrorClass.textContent = ' ';
 }
 
