@@ -101,6 +101,8 @@ function handleFormCardSubmit (evt) {
 
 function openPopUp(el) {
   el.classList.add('popup_opened');
+  closePopUpByOverlay();
+  closePopUpByEsc();
 }
 
 function closePopUp(el) {
@@ -150,4 +152,32 @@ closeButton.forEach(button => {
   const buttonsPopUp = button.closest('.popup');
   button.addEventListener('click', () => closePopUp(buttonsPopUp));
 });
+
+//TODO close popups with overlay and esc
+
+function closePopUpByEsc() {
+  const body = document.querySelector('#body');
+  const popUps = body.querySelectorAll('.popup');
+  body.addEventListener('keydown', function (evt) {
+    if (evt.key === 'Escape') {
+      popUps.forEach((el) => {
+        closePopUp(el);
+      });
+    };
+  });
+}
+
+
+function closePopUpByOverlay() {
+  const overlayButton = document.querySelector('.popup_opened');
+  const photoContainer = document.querySelector('.popup__container_photo');
+    overlayButton.addEventListener('click', (event)  => {
+    if(event.target !== overlayButton && event.target !== photoContainer) {
+      return 0;
+    } else {
+      closePopUp(overlayButton);
+    }
+  });
+}
+
 
