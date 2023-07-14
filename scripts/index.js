@@ -1,6 +1,7 @@
 const editButton = document.querySelector('.profile__edit-button');
 const addButton = document.querySelector('.profile__add-button');
-const closeButton = document.querySelectorAll('.popup__close-button');
+const closeButtons = document.querySelectorAll('.popup__close-button');
+const popUps = document.querySelectorAll('.popup');
 
 const popUpProfile = document.querySelector('#popup-profile');
 const formProfileElement = popUpProfile.querySelector('#popup-profile__form');
@@ -95,17 +96,17 @@ function handleFormCardSubmit (evt) {
   userCard.link = `${linkInput.value}`;
   addCard(userCard);
   closePopUp(popUpCard);
-  placeInput.value = null;
-  linkInput.value = null;
+  evt.target.reset();
 }
 
 function openPopUp(el) {
   el.classList.add('popup_opened');
-  closePopUpByOverlay();
+  document.addEventListener('keydown', closeByEsc);
 }
 
 function closePopUp(el) {
   el.classList.remove('popup_opened');
+  document.removeEventListener('keydown', closeByEsc);
 }
 
 function openPopUpProfile() {
@@ -126,7 +127,10 @@ function handleFormProfileSubmit (evt) {
 }
 
 function openPopUpCard() {
+  const submitButton = popUpCard.querySelector('.popup__submit-button');
   openPopUp(popUpCard);
+  submitButton.classList.add('popup__submit-button_inactive');
+  submitButton.setAttribute('disabled', true);
 }
 
 function closePopUpCard() {
@@ -146,38 +150,27 @@ formProfileElement.addEventListener('submit', handleFormProfileSubmit);
 addButton.addEventListener('click', openPopUpCard);
 formCardElement.addEventListener('submit', handleFormCardSubmit);
 
-//TODO function for closing all popups with closeButton
-closeButton.forEach(button => {
-  const buttonsPopUp = button.closest('.popup');
-  button.addEventListener('click', () => closePopUp(buttonsPopUp));
-});
-
-//TODO close popups with overlay and esc
-
-function closePopUpByEsc() {
-  const body = document.querySelector('#body');
-  const popUps = body.querySelectorAll('.popup');
-  body.addEventListener('keydown', function (evt) {
-    if (evt.key === 'Escape') {
-      popUps.forEach((el) => {
-        closePopUp(el);
-      });
-    };
-  });
-}
-
-closePopUpByEsc();
-
-function closePopUpByOverlay() {
-  const overlayButton = document.querySelector('.popup_opened');
-  const photoContainer = document.querySelector('.popup__container_photo');
-    overlayButton.addEventListener('click', (event)  => {
-    if(event.target !== overlayButton && event.target !== photoContainer) {
-      return 0;
-    } else {
-      closePopUp(overlayButton);
+//TODO one function for closing popups by x and overlay
+popUps.forEach((popup) => {
+  popup.addEventListener('mousedown', (evt) => {
+    if (evt.target.classList.contains('popup_opened')) {
+      closePopUp(popup);
+    }
+    if (evt.target.classList.contains('popup__close-button')) {
+      closePopUp(popup);
+    }
+    if (evt.target.classList.contains('popup__container_photo')) {
+      closePopUp(popup);
     }
   });
+});
+
+//TODO close popups with esc and remove listeners after
+function closeByEsc(evt) {
+  if (evt.key === 'Escape') {
+    const openedPopUp = document.querySelector('.popup_opened');
+    closePopUp(openedPopUp);
+  }
 }
 
 

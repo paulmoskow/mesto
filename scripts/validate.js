@@ -1,56 +1,66 @@
 const formSelector = document.querySelector('.popup__form');
 const inputSelector = formSelector.querySelector('.popup__input');
-const formError = formSelector.querySelector(`.${inputSelector.id}-error`);
+
+//TODO validation object
+const config = {
+  typeErrClass: 'popup__input_type_error',
+  spanErrClass: 'popup__error_visible',
+  inputSelect: '.popup__input',
+  formSelect: '.popup__form',
+  submitSelect: '.popup__submit-button',
+  submitSelectOff: 'popup__submit-button_inactive'
+};
 
 // TODO add class with error
-function showInputError(formSelector, inputSelector, errorMessage) {
+function showInputError(formSelector, inputSelector, errorMessage, config) {
   const inputErrorClass = formSelector.querySelector(`.${inputSelector.id}-error`);
-  inputSelector.classList.add('popup__input_type_error');
+  inputSelector.classList.add(config.typeErrClass);
   inputErrorClass.textContent = errorMessage;
-  inputErrorClass.classList.add('popup__error_visible');
+  inputErrorClass.classList.add(config.spanErrClass);
 }
 
 // TODO delete class with error
-function hideInputError (formSelector, inputSelector) {
+function hideInputError (formSelector, inputSelector, config) {
   const inputErrorClass = formSelector.querySelector(`.${inputSelector.id}-error`);
-  inputSelector.classList.remove('popup__input_type_error');
-  inputErrorClass.remove('popup__error');
+  inputSelector.classList.remove(config.typeErrClass);
+  inputErrorClass.classList.remove(config.spanErrClass);
   inputErrorClass.textContent = ' ';
 }
 
 // TODO check input
-function isValid(formSelector, inputSelector) {
+function isValid(formSelector, inputSelector, config) {
   if (!inputSelector.validity.valid) {
-    showInputError(formSelector, inputSelector, inputSelector.validationMessage);
+    showInputError(formSelector, inputSelector, inputSelector.validationMessage, config);
   } else {
-    hideInputError(formSelector, inputSelector);
+    hideInputError(formSelector, inputSelector, config);
   }
 };
 
 //TODO add listeners to all inputs
-function setEventListeners (formSelector) {
-  const inputArr = Array.from(formSelector.querySelectorAll('.popup__input'));
-  const submitButtonSelector = formSelector.querySelector('.popup__submit-button');
-  toggleButtonSate(inputArr, submitButtonSelector);
+function setEventListeners (formSelector, config) {
+  const inputArr = Array.from(formSelector.querySelectorAll(config.inputSelect));
+  const submitButtonSelector = formSelector.querySelector(config.submitSelect);
+  toggleButtonSate(inputArr, submitButtonSelector, config);
   inputArr.forEach((inputSelector) => {
      inputSelector.addEventListener('input', () => {
-      isValid(formSelector, inputSelector);
-      toggleButtonSate(inputArr, submitButtonSelector);
+      isValid(formSelector, inputSelector, config);
+      toggleButtonSate(inputArr, submitButtonSelector, config);
     });
   });
 }
 
-function enableValidation() {
-  const formArr = Array.from(document.querySelectorAll('.popup__form'));
+function enableValidation(config) {
+  const formArr = Array.from(document.querySelectorAll(config.formSelect));
   formArr.forEach((formSelector) => {
     formSelector.addEventListener('submit', (evt) => {
       evt.preventDefault();
     });
-    setEventListeners(formSelector);
+    setEventListeners(formSelector, config);
   });
+
 };
 
-enableValidation();
+enableValidation(config);
 
 //TODO block button
 function hasInvalidInput(inputArr) {
@@ -59,18 +69,13 @@ function hasInvalidInput(inputArr) {
   });
 }
 
-function toggleButtonSate(inputArr, submitButtonSelector) {
+function toggleButtonSate(inputArr, submitButtonSelector, config) {
   if (hasInvalidInput(inputArr)) {
-    submitButtonSelector.classList.add('popup__submit-button_inactive');
+    submitButtonSelector.classList.add(config.submitSelectOff);
     submitButtonSelector.setAttribute('disabled', true);
   } else {
-    submitButtonSelector.classList.remove('popup__submit-button_inactive');
+    submitButtonSelector.classList.remove(config.submitSelectOff);
     submitButtonSelector.removeAttribute('disabled');
   }
 }
-
-
-
-
-
 
