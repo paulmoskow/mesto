@@ -1,3 +1,5 @@
+import { Card } from "./card.js"; //TODO export Card
+
 const editButton = document.querySelector('.profile__edit-button');
 const addButton = document.querySelector('.profile__add-button');
 const closeButtons = document.querySelectorAll('.popup__close-button');
@@ -15,78 +17,13 @@ const formCardElement = popUpCard.querySelector('#popup-card__form');
 const placeInput = formCardElement.querySelector('#placeinput');
 const linkInput = formCardElement.querySelector('#linkinput');
 
-const popUpPhoto = document.querySelector('#popup-photo');
-const popUpImage = document.querySelector('.popup__image');
-const popUpCaption = document.querySelector('.popup__caption');
-
-const initialCards = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-];
-
 const userElements = document.querySelector('.elements');
-const userTemplate = document.querySelector('#element').content;
 
-
-//make a function for creating cards on the page//
-//TODO - SHOULD BE TWO FUNCTIONS: CREATE CARD AND ADD CARD
-//WHEN TO CREATE CARD ADD POSSIBILITY OF TWO VARIATIONS: TAKE INPUTS FROM ARRAY INITIALCARDS AND FROM USERS INPUT
-function createCard(element) {
-  const userElement = userTemplate.querySelector('.element').cloneNode(true);
-  const photoButton = userElement.querySelector('.element__image');
-  const deleteButton = userElement.querySelector('#delete');
-  const likeButton = userElement.querySelector('#like');
-  photoButton.src = element.link;
-  photoButton.alt = element.name;
-  userElement.querySelector('.element__text').textContent = element.name;
-//TODO send elements argument to a function via callback
-  photoButton.addEventListener('click', () => openPopUpPhoto(element));
-  deleteButton.addEventListener('click', () => {
-    const card = deleteButton.closest('.element');
-    card.remove();
-  });
-  likeButton.addEventListener('click', () => {
-    likeButton.classList.toggle('element__like_active');
-  });
-  return userElement;
-}
-
-function addInitialCard(element) {
-  userElements.append(createCard(element));
-}
-
-function addInitialCards(elements) {
-  elements.forEach((el) => {
-    addInitialCard(el);
-  });
-}
-
-addInitialCards(initialCards);
-
+//TODO new addCard
 function addCard(element) {
-  userElements.prepend(createCard(element));
+  const card = new Card(element, '#element');
+  const cardElement = card.generateCard();
+  userElements.prepend(cardElement);
 }
 
 function handleFormCardSubmit (evt) {
@@ -99,7 +36,7 @@ function handleFormCardSubmit (evt) {
   evt.target.reset();
 }
 
-function openPopUp(el) {
+export function openPopUp(el) {
   el.classList.add('popup_opened');
   document.addEventListener('keydown', closeByEsc);
 }
@@ -131,17 +68,6 @@ function openPopUpCard() {
   openPopUp(popUpCard);
   submitButton.classList.add('popup__submit-button_inactive');
   submitButton.setAttribute('disabled', true);
-}
-
-function closePopUpCard() {
-  closePopUp(popUpCard);
-}
-
-function openPopUpPhoto(element) {
-  popUpImage.setAttribute('src', element.link);
-  popUpImage.setAttribute('alt', element.name);
-  popUpCaption.textContent = element.name;
-  openPopUp(popUpPhoto);
 }
 
 editButton.addEventListener('click', openPopUpProfile);

@@ -1,4 +1,4 @@
-const formSelector = document.querySelector('.popup__form');
+/*const formSelector = document.querySelector('.popup__form');
 const inputSelector = formSelector.querySelector('.popup__input');
 
 //TODO validation object
@@ -78,4 +78,4 @@ function toggleButtonSate(inputArr, submitButtonSelector, config) {
     submitButtonSelector.removeAttribute('disabled');
   }
 }
-
+*/
