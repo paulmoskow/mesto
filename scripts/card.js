@@ -1,6 +1,5 @@
-//TODO another file for array initialCards
-import { openPopUp } from "./index.js";
-import { initialCards } from "./initialCards.js";
+//TODo: import function to set popupPhoto
+import { handleOpenPopupPhoto } from "./index.js";
 
 export class Card {
   constructor(data, templateSelector) {
@@ -20,47 +19,40 @@ export class Card {
 
   generateCard() {
     this._element = this._getTemplate();
+//TODO: optimize search of elements
+    this._image = this._element.querySelector('.element__image');
+    this._text = this._element.querySelector('.element__text');
+    this._delete =  this._element.querySelector('#delete');
+    this._like = this._element.querySelector('#like');
+    this._image.src = this._link;
+    this._image.alt = this._name;
+    this._text.textContent = this._name;
     this._setEventListeners();
-    this._element.querySelector('.element__image').src = this._link;
-    this._element.querySelector('.element__image').alt = this._name;
-    this._element.querySelector('.element__text').textContent = this._name;
     return this._element;
   }
 
   _setEventListeners() {
-    this._element.querySelector('.element__image').addEventListener('click', () => {
-      this._openPopUpPhoto();
+    this._image.addEventListener('click', () => {
+      //TODO: callback settings of popupPhoto from index.js
+      handleOpenPopupPhoto(this._name, this._link);
     });
-    this._element.querySelector('#delete').addEventListener('click', () => {
+    this._delete.addEventListener('click', () => {
       this._deleteCard();
     });
-    this._element.querySelector('#like').addEventListener('click', () => {
+    this._like.addEventListener('click', () => {
       this._likeCard();
     });
   }
 
 //TODO private methods for every listener
-  _openPopUpPhoto() {
-    const popUpPhoto = document.querySelector('#popup-photo');
-    document.querySelector('.popup__image').setAttribute('src', this._link);
-    document.querySelector('.popup__image').setAttribute('alt', this._name);
-    document.querySelector('.popup__caption').textContent = this._name;
-    openPopUp(popUpPhoto);
-  }
-
   _deleteCard() {
-    const card = this._element.querySelector('#delete').closest('.element'); //TODO private methods for every listener
+    const card = this._delete.closest('.element');
     card.remove();
   }
 
   _likeCard() {
-    this._element.querySelector('#like').classList.toggle('element__like_active');
+    this._like.classList.toggle('element__like_active');
   }
 }
 
-//TODO for each initial card create Card and append
-initialCards.forEach((item) => {
-  const card = new Card(item, '#element');
-  const cardElement = card.generateCard();
-  document.querySelector('.elements').append(cardElement);
-});
+

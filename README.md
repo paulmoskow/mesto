@@ -4,9 +4,11 @@
 
 ## В поекте применены такие технологии, как:
 
-* **управление элементами с помощью JS**
-* **обработка отправки данных формы с помощью JS**
-* **адаптивная верстка**
+* **object-oriented programming**
+* **ES6 Modules**
+* **managing elements with JS**
+* **handling and validation forms with JS**
+* **adaptive css**
 * **Grid Layout**
 * **flexbox**
 * **pseudo classes**
