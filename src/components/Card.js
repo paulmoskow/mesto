@@ -1,8 +1,10 @@
 //TODo: import function to set popupPhoto
-import { handleOpenPopupPhoto } from "./index.js";
+import { handleCardClick } from "../index.js";
 
-export class Card {
-  constructor(data, templateSelector) {
+export default class Card {
+  constructor(data, templateSelector
+    //TODO add to constructor handleCardClick to open popup with click on the card
+     ) {
     this._name = data.name;
     this._link = data.link;
     this._templateSelector = templateSelector;
@@ -34,7 +36,7 @@ export class Card {
   _setEventListeners() {
     this._image.addEventListener('click', () => {
       //TODO: callback settings of popupPhoto from index.js
-      handleOpenPopupPhoto(this._name, this._link);
+      handleCardClick(this._name, this._link);
     });
     this._delete.addEventListener('click', () => {
       this._deleteCard();

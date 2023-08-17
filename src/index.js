@@ -1,3 +1,23 @@
+import './pages/index.css';
+import './images/Add Button.svg';
+import './images/Add Button__mobile.svg';
+import './images/Close Icon.svg';
+import './images/Edit Button.svg';
+import './images/Edit Button__mobile.svg';
+import './images/image.jpg';
+import './images/like.svg';
+import './images/like_active.svg';
+import './images/logo.svg';
+import './images/Trash.svg';
+import './fonts/Inter-Black.woff';
+import './fonts/Inter-Black.woff2';
+import './fonts/Inter-Medium.woff';
+import './fonts/Inter-Medium.woff2';
+import './fonts/Inter-Regular.woff';
+import './fonts/Inter-Regular.woff2';
+import './fonts/inter.css';
+
+
 const editButton = document.querySelector('.profile__edit-button');
 const addButton = document.querySelector('.profile__add-button');
 
@@ -14,15 +34,15 @@ const placeInput = formCardElement.querySelector('#placeinput');
 const linkInput = formCardElement.querySelector('#linkinput');
 
 //TODO: import all classes and arrays
-import Section from "../components/Section.js";
-import UserInfo from "../components/UserInfo.js";
-import Card from "../components/Card.js";
-import PopupWithImage from "../components/PopupWithImage.js";
-import PopupWithForm from "../components/PopupWithForm.js";
+import Section from "./components/Section.js";
+import UserInfo from "./components/UserInfo.js";
+import Card from "./components/Card.js";
+import PopupWithImage from "./components/PopupWithImage.js";
+import PopupWithForm from "./components/PopupWithForm.js";
 
-import { initialCards } from "../utils/constants.js";
-import { config } from "../utils/constants.js";
-import FormValidator from "../components/FormValidator.js";
+import { initialCards } from "./utils/constants.js";
+import { config } from "./utils/constants.js";
+import FormValidator from "./components/FormValidator.js";
 
 //TODO set user info in profile
 const profileInfo = new UserInfo({
