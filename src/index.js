@@ -1,9 +1,9 @@
 import './pages/index.css';
-import './images/Add Button.svg';
-import './images/Add Button__mobile.svg';
-import './images/Close Icon.svg';
-import './images/Edit Button.svg';
-import './images/Edit Button__mobile.svg';
+import './images/add_button.svg';
+import './images/add_button__mobile.svg';
+import './images/close_icon.svg';
+import './images/edit_button.svg';
+import './images/edit_button__mobile.svg';
 import './images/image.jpg';
 import './images/like.svg';
 import './images/like_active.svg';
