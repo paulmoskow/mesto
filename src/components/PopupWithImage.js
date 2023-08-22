@@ -12,3 +12,5 @@ export default class PopupWithImage extends Popup {
     this._popup.querySelector('.popup__caption').textContent = name;
   }
 }
+
+

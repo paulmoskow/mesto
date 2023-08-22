@@ -1,13 +1,23 @@
 //TODo: import function to set popupPhoto
-import { handleCardClick } from "../index.js";
+//import { handleCardClick } from "../pages/index.js";
 
-export default class Card {
+
+/*export default class Card {
   constructor(data, templateSelector
     //TODO add to constructor handleCardClick to open popup with click on the card
      ) {
     this._name = data.name;
     this._link = data.link;
     this._templateSelector = templateSelector;
+  }*/
+
+export default class Card {
+  //TODO add to constructor handleCardClick to open popup with click on the card
+  constructor(data, templateSelector, handleCardClick) {
+    this._name = data.name;
+    this._link = data.link;
+    this._templateSelector = templateSelector;
+    this._handleCardClick = handleCardClick;
   }
 
   _getTemplate() {
@@ -36,8 +46,9 @@ export default class Card {
   _setEventListeners() {
     this._image.addEventListener('click', () => {
       //TODO: callback settings of popupPhoto from index.js
-      handleCardClick(this._name, this._link);
+      this._handleCardClick(this._name, this._link);
     });
+    //this._image.addEventListener('click', this._handleCardClick(this._name, this._link));
     this._delete.addEventListener('click', () => {
       this._deleteCard();
     });
@@ -45,6 +56,21 @@ export default class Card {
       this._likeCard();
     });
   }
+
+  /*
+  _setEventListeners() {
+    this._image.addEventListener('click', () => {
+      //TODO: callback settings of popupPhoto from index.js
+      handleCardClick(this._name, this._link);
+    });
+    //this._image.addEventListener('click', this._handleCardClick(this._name, this._link));
+    this._delete.addEventListener('click', () => {
+      this._deleteCard();
+    });
+    this._like.addEventListener('click', () => {
+      this._likeCard();
+    });
+  }*/
 
 //TODO private methods for every listener
   _deleteCard() {

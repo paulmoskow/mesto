@@ -7,16 +7,16 @@ export default class UserInfo {
   }
 
   getUserInfo() {
-    const userInfo = {
-      name: this._name.textContent,
-      info: this._info.textContent
-    };
-    return userInfo //return object with name and info
+    const userInfo = [
+      {name: 0, value: this._name.textContent},
+      {name: 1, value: this._info.textContent}
+    ];
+    return userInfo; //return object with name and info
   }
 
-  setUserInfo(name, info) {
-    this._name.textContent = name;
-    this._info.textContent = info;
+  setUserInfo(data) {
+    this._name.textContent = data[0].value;
+    this._info.textContent = data[1].value;
     //get new name and info and add to the page
   }
 }
