@@ -1,37 +1,35 @@
 import Popup from "./Popup.js";
 
 export default class PopupWithForm extends Popup {
-  /*constructor(selector, {formSubmit}) {
-    super(selector);
-    this._formSubmit = formSubmit; //callback of submit of the form
-  }*/
 
-  constructor(selector, formId, { formSubmit }) {
+  constructor(selector, formId, { handleFormSubmit }) {
     super(selector);
     this._form = document.getElementById(formId);
-    this._formSubmit = formSubmit; //callback of submit of the form
+    this._handleFormSubmit = handleFormSubmit; //callback of submit of the form
   }
 
   _getInputValues() {
-    const inputArr = this._form.elements;
-    const data = Array.from(inputArr)
-      .filter((item) => !!item.name)
-      .map((input) => {
-        const { name, value } = input;
-        return { name, value };
-      })
-      this._formSubmit(data);
-    }
-
-
-  setEventListeners() {
-    super.setEventListeners();
-    this._form.addEventListener('submit', (evt) => {
-      evt.preventDefault();
-      this._getInputValues();
+    this._inputList = this._form.elements;
+    this._formValues = {};
+    Array.from(this._inputList).forEach((input) => {
+      this._formValues[input.name] = input.value;
     });
+    return this._formValues;
+  }
+
     // super - to set listeners for close-button and background
     // add handle formSubmit
+  setEventListeners() {
+    super.setEventListeners();
+
+    this._form.addEventListener('submit', (evt) => {
+      evt.preventDefault();
+      this._handleFormSubmit(this._getInputValues());
+    });
+  }
+
+  open() {
+    super.open();
   }
 
   close() {

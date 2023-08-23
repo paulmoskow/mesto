@@ -64,10 +64,10 @@ const popUpPhoto = new PopupWithImage('#popup-photo');
 popUpPhoto.setEventListeners();
 
 //TODO add user cards with class Section
-const handleFormCardSubmit = (data) => {
+const handleCardSubmit = (input) => {
   const userCard = {
-  name: data[0].value,
-  link: data[1].value
+  name: input.placeInput,
+  link: input.linkInput
   };
   newCardSection.items = userCard;
   newCardSection.renderer = (element) => {
@@ -78,28 +78,28 @@ const handleFormCardSubmit = (data) => {
 }
 
 //TODO class for profile popup
-const handleFormSubmit = (data) => {
-    profileInfo.setUserInfo(data);
+const handleProfileSubmit = (input) => {
+    profileInfo.setUserInfo(input);
     popupProfile.close();
 }
 
 const popupProfile = new PopupWithForm(
   '#popup-profile',
   'popup-profile__form',
-  { formSubmit: handleFormSubmit }
+  { handleFormSubmit: handleProfileSubmit }
 );
 
 popupProfile.setEventListeners();
-editButton.addEventListener('click', popupProfile.open.bind(popupProfile));
+editButton.addEventListener('click', openPopupProfile.bind(popupProfile));
 
 const popupCard = new PopupWithForm(
   '#popup-card',
   'popup-card__form',
-  { formSubmit: handleFormCardSubmit
+  { handleFormSubmit: handleCardSubmit
 });
 
 popupCard.setEventListeners();
-addButton.addEventListener('click', popupCard.open.bind(popupCard));
+addButton.addEventListener('click', openPopupCard.bind(popupCard));
 
 //TODO: make a const with form address
 const cardForm = document.querySelector('#popup-card__form');
@@ -109,3 +109,14 @@ cardFormValidator.enableValidation();
 const profileForm = document.querySelector('#popup-profile__form');
 const profileFormValidator = new FormValidator(config, profileForm);
 profileFormValidator.enableValidation();
+
+function openPopupProfile() {
+  popupProfile.open();
+  profileFormValidator.toggleButtonState();
+}
+
+function openPopupCard() {
+  popupCard.open();
+  cardFormValidator.toggleButtonState();
+}
+
