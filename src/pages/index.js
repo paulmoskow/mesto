@@ -111,8 +111,10 @@ const profileFormValidator = new FormValidator(config, profileForm);
 profileFormValidator.enableValidation();
 
 function openPopupProfile() {
+  const currentUserInfo = profileInfo.getUserInfo();
+  popupProfile.form.nameInput.value = currentUserInfo.nameInput;
+  popupProfile.form.jobInput.value = currentUserInfo.jobInput;
   popupProfile.open();
-  profileFormValidator.toggleButtonState();
 }
 
 function openPopupCard() {
