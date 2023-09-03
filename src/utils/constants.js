@@ -34,3 +34,4 @@ export const config = {
   submitSelect: '.popup__submit-button',
   submitSelectOff: 'popup__submit-button_inactive'
 };
+

@@ -4,6 +4,7 @@
 
 ## В поекте применены такие технологии, как:
 
+* **API**
 * **object-oriented programming**
 * **ES6 Modules**
 * **managing elements with JS**

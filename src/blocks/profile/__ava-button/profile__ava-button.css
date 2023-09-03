@@ -1,0 +1,25 @@
+.profile__ava-button {
+  position: absolute;
+  left: 0;
+  top: 0;
+  background-image: url("../../../images/ava_button.svg");
+  width: 120px;
+  height: 120px;
+  border-radius: 90%;
+  background-size: auto;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: #000000CC;
+  border: none;
+  opacity: 0;
+}
+
+.profile__ava-button:hover {
+  opacity: 1;
+}
+
+@media screen and (max-width: 660px) {
+  .profile__ava-button {
+    left: calc((100% / 2) - 60px);
+  }
+}

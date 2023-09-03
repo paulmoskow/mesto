@@ -15,8 +15,10 @@
     </header>
     <main>
       <section class="profile">
+        <img src="#" class="profile__image" alt="Аватар">
+        <button type="button" class="profile__ava-button"></button>
         <!--<img src="./images/image.jpg" class="profile__image" alt="Аватар">-->
-        <img src="<%=require('./images/image.jpg')%>" class="profile__image" alt="Аватар">
+        <!--<img src="<%=require('./images/image.jpg')%>" class="profile__image" alt="Аватар">-->
         <div class="profile__info">
           <div class="profile__info-user">
             <h1 class="profile__name">Жак-Ив Кусто</h1>
@@ -31,6 +33,29 @@
     <footer class="footer">
       <p class="footer__copyright">© 2020 Mesto Russia</p>
     </footer>
+
+    <div class="popup" id="popup-avatar">
+      <div class="popup__container">
+        <button type="button" class="popup__close-button" id="popup-card__close-button"></button>
+        <h2 class="popup__legend">Обновить аватар</h2>
+        <form name="popup__form" class="popup__form" id="popup-avatar__form" novalidate>
+          <input type="url" placeholder="Ссылка на картинку" class="popup__input" name="avaLinkInput" id="avalinkinput" required>
+          <span class="avalinkinput-error popup__error"></span>
+          <button type="submit" class="popup__submit-button">Сохранить</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="popup" id="popup-delete">
+      <div class="popup__container">
+        <button type="button" class="popup__close-button" id="popup-card__close-button"></button>
+        <h2 class="popup__legend">Вы уверены?</h2>
+        <form name="popup__form" class="popup__form" id="popup-delete__form" novalidate>
+          <button type="submit" class="popup__submit-button popup__submit-button_delete-card" >Да</button>
+        </form>
+        </div>
+    </div>
+
     <div class="popup" id="popup-profile">
       <div class="popup__container">
         <button type="button" class="popup__close-button"></button>
@@ -72,7 +97,11 @@
       <button type="button" class="element__trash" id="delete"></button>
       <img class="element__image" alt="Фотография">
       <h2 class="element__text"></h2>
-      <button type="button" class="element__like" id="like"></button>
+      <div class="element__likes">
+        <button type="button" class="element__like" id="like"></button>
+        <p class="element__likes-quantity">0</p>
+      </div>
+
     </div>
   </template>
   <!--<script type="module" src="./pages/index.js"></script>-->
