@@ -3,7 +3,6 @@ export default class FormValidator {
     this._typeErrClass = config.typeErrClass;
     this._spanErrClass = config.spanErrClass;
     this._inputSelect = config.inputSelect;
-    this._formSelect = config.formSelect;
     this._submitSelect = config.submitSelect;
     this._submitSelectOff = config.submitSelectOff;
     this._formElement = formElement;
@@ -43,7 +42,7 @@ export default class FormValidator {
   toggleButtonState() {
     if (this._hasInvalidInput()) {
       this._submitButtonSelector.classList.add(this._submitSelectOff);
-      this._submitButtonSelector.setAttribute('disabled', true);
+      this._submitButtonSelector.disabled;
     } else {
       this._submitButtonSelector.classList.remove(this._submitSelectOff);
       this._submitButtonSelector.removeAttribute('disabled');
@@ -56,18 +55,15 @@ export default class FormValidator {
     this.toggleButtonState();
     //TODO: set input value
     this._inputArr.forEach((input) => {
-       input.addEventListener('input', () => {
-       this._isValid(input);
-       this.toggleButtonState();
+      input.addEventListener('input', () => {
+        this._isValid(input);
+        this.toggleButtonState();
       });
     });
   }
 
   //TODO - HOW TO FIND FORM
   enableValidation() {
-    this._formElement.addEventListener('submit', (evt) => {
-      evt.preventDefault();
-    });
     this._setEventListeners();
   }
 }

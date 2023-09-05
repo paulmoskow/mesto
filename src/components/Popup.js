@@ -24,8 +24,8 @@ export default class Popup {
   setEventListeners() {
     this._popup.addEventListener('mousedown', (evt) => {
       if (evt.target.classList.contains('popup_opened')
-      || evt.target.classList.contains('popup__close-button')
-      || evt.target.classList.contains('popup__container_photo')) {
+      || evt.target.classList.contains('popup__close-button')) {
+//      || evt.target.classList.contains('popup__container_photo')) {
         this.close();
       }
     });//set listeners for close-button and background

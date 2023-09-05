@@ -4,8 +4,10 @@ export default class PopupWithForm extends Popup {
 
   constructor(selector, formId, { handleFormSubmit }) {
     super(selector);
-    this.form = document.getElementById(formId);
-    this._handleFormSubmit = handleFormSubmit; //callback of submit of the form
+    this.form = document.querySelector(formId);
+    this._handleFormSubmit = handleFormSubmit;
+    this._submitButton = this.form.querySelector('.popup__submit-button');
+    //callback of submit of the form
   }
 
   _getInputValues() {
@@ -27,13 +29,13 @@ export default class PopupWithForm extends Popup {
     });
   }
 
-  open() {
-    super.open();
-  }
-
   close() {
     super.close();
     this.form.reset();//to reset form with close
+  }
+
+  setSubmitButtonText(text) {
+    this._submitButton.textContent = text;
   }
 }
 
