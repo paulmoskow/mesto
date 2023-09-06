@@ -145,9 +145,9 @@ const handleAvatarSubmit = (input) => {
 //TODO function to handle card likes
 const handleCardLike = (card) => {
   if (!card.isLiked()) {
-    api.likeCard(card.cardId)
+    api.likeCard(card.getCardId())
      .then((cardData) => {
-        card.updateLikes(cardData);
+        card.updateLikes(cardData.likes);
         card.setLikesStatus();
       })
       .catch((err) => {
@@ -156,9 +156,9 @@ const handleCardLike = (card) => {
   }
   //TODO delete card like
   else {
-    api.unlikeCard(card.cardId)
+    api.unlikeCard(card.getCardId())
       .then((cardData) => {
-        card.updateLikes(cardData);
+        card.updateLikes(cardData.likes);
         card.setLikesStatus();
     })
     .catch((err) => {
@@ -196,14 +196,14 @@ const handleDeleteCardSubmit = (card) => {
   console.log(card);
   popupDeleteCard.open();
   popupDeleteCard.setCallBack(() => {
-  api.deleteCard(card.cardId)
-    .catch((err) => {
-      console.log(err);
-    })
-    .then(() => {
-      popupDeleteCard.close();
-      card.deleteCard();
-    });
+    api.deleteCard(card.getCardId())
+      .catch((err) => {
+        console.log(err);
+      })
+      .then(() => {
+        popupDeleteCard.close();
+        card.deleteCard();
+      });
   });
 };
 
